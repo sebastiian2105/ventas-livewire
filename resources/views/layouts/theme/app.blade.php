@@ -22,7 +22,7 @@
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
-     @include('layouts.theme.header')
+    @include('layouts.theme.header')
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
@@ -32,7 +32,7 @@
         <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
-         @include('layouts.theme.sidebar')
+        @include('layouts.theme.sidebar')
         <!--  END SIDEBAR  -->
         
         <!--  BEGIN CONTENT AREA  -->
