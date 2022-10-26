@@ -39,7 +39,7 @@
                                 </td>
                                 <td class="text-center">
                                     <span>
-                                        <img src="{{ asset('storage/categories/' . $category->imagen) }}"
+                                        <img src="{{ asset('storage/categories/' . $category->image) }}"
                                             alt="Imagen Producto" height="70" width="80" class="rounded">
                                     </span>
                                 </td>

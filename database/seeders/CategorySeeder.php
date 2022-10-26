@@ -34,5 +34,25 @@ class CategorySeeder extends Seeder
             'name' => 'Cargadores',
             'image' => 'https://dummyimage.com/200x150/5c5756/fff'
         ]);
+        Category::create([
+            'name' => 'Tarjetas de Video',
+            'image' => 'https://dummyimage.com/200x150/5c5756/fff'
+        ]);
+        Category::create([
+            'name' => 'Monitores Gamer',
+            'image' => 'https://dummyimage.com/200x150/5c5756/fff'
+        ]);
+        Category::create([
+            'name' => 'Licuadoras',
+            'image' => 'https://dummyimage.com/200x150/5c5756/fff'
+        ]);
+        Category::create([
+            'name' => 'Televisores',
+            'image' => 'https://dummyimage.com/200x150/5c5756/fff'
+        ]);
+        Category::create([
+            'name' => 'Neveras',
+            'image' => 'https://dummyimage.com/200x150/5c5756/fff'
+        ]);
     }
 }
