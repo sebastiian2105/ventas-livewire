@@ -52,11 +52,16 @@
                                     {{-- @can('Category_Update')
                                     @endcan --}}
 
+
+                                    @if($category->products->count() < 1)
                                     <a
                                         href="javascript:void(0)" onclick="Confirm('{{$category->id}}')"
                                         class="btn btn-dark" title="Delete">
                                         <i class="fas fa-trash"></i>
                                     </a>
+                                    @endif 
+
+                                    
                                     {{-- @if($category->products->count() < 1 )
                                         @can('Category_Destroy')
 

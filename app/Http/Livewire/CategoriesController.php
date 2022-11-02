@@ -17,6 +17,10 @@ class CategoriesController extends Component
     public $name, $search, $image, $selected_id = 0, $pageTitle, $componentName;
     private $pagination = 5;
 
+    protected $listeners = [
+        'deleteRow' => 'Destroy'
+    ];
+
     public function mount()
     {
         $this->pageTitle = 'Listado';
@@ -30,13 +34,13 @@ class CategoriesController extends Component
 
     public function render()
     {
-        $categories = Category::when($this->search, function($q) {
+        $categories = Category::when($this->search, function ($q) {
             $q->where('name', 'like', '%' . $this->search . '%');
         })->orderBy('id', 'desc')->paginate($this->pagination);
 
         return view('livewire.category.categories', compact('categories'))
-                ->extends('layouts.theme.app')
-                ->section('content');
+            ->extends('layouts.theme.app')
+            ->section('content');
     }
 
     public function Edit(Category $category)
@@ -54,7 +58,7 @@ class CategoriesController extends Component
         $this->validate($rules['rules'], $rules['messages']);
         $data['name'] = $this->name;
 
-        if($this->image) {
+        if ($this->image) {
             $customFileName = GlobalApp::saveFile($this->image, 'categories');
             $data['image'] = $customFileName;
         }
@@ -73,12 +77,12 @@ class CategoriesController extends Component
 
         $category = Category::find($this->selected_id);
 
-        if($this->image) {
+        if ($this->image) {
             $customFileName = GlobalApp::saveFile($this->image, 'categories');
             $data['image'] = $customFileName;
 
             if ($category->image != null && file_exists('storage/categories/' . $category->image)) {
-                unlink('storage/categories/'. $category->image);
+                unlink('storage/categories/' . $category->image);
             }
         }
 
@@ -95,6 +99,20 @@ class CategoriesController extends Component
         $this->search = '';
         $this->selected_id = 0;
     }
+
+    public function Destroy(Category $category)
+    {
+        $imageName = $category->image;
+        $category->delete();
+
+        if ($imageName) {
+            unlink('storage/categories/' . $imageName);
+        }
+
+        $this->resetUI();
+        $this->emit('category-deleted', 'Categoria Eliminada');
+    }
+
 
     protected function getRulesAndMessages($type = null)
     {
